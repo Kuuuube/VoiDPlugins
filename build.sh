@@ -108,6 +108,8 @@ while [ $# -gt 0 ]; do
     shift
 done
 
+mkdir -p build
+
 clean_output
 
 for plugin in "${plugins[@]}"; do
