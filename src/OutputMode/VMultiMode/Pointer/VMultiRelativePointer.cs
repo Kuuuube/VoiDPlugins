@@ -9,7 +9,7 @@ using static VoiDPlugins.OutputMode.VMultiModeConstants;
 
 namespace VoiDPlugins.OutputMode
 {
-    public unsafe class VMultiRelativePointer : IRelativePointer, ISynchronousPointer
+    public unsafe class VMultiRelativePointer : VMultiButtonHandler, IRelativePointer, ISynchronousPointer, IPenActionHandler
     {
         private readonly RelativeInputReport* _rawPointer;
         private readonly VMultiInstance<RelativeInputReport> _instance;

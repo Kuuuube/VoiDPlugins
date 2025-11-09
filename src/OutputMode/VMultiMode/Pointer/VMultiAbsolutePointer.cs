@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Numerics;
 using OpenTabletDriver.Plugin.Platform.Display;
 using OpenTabletDriver.Plugin.Platform.Pointer;
@@ -10,7 +9,7 @@ using static VoiDPlugins.OutputMode.VMultiModeConstants;
 
 namespace VoiDPlugins.OutputMode
 {
-    public unsafe class VMultiAbsolutePointer : IAbsolutePointer, ISynchronousPointer
+    public unsafe class VMultiAbsolutePointer : VMultiButtonHandler, IAbsolutePointer, ISynchronousPointer, IPenActionHandler
     {
         private readonly AbsoluteInputReport* _rawPointer;
         private readonly VMultiInstance<AbsoluteInputReport> _instance;

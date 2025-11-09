@@ -11,7 +11,7 @@ using static VoiDPlugins.OutputMode.VMultiModeConstants;
 namespace VoiDPlugins.OutputMode
 {
     [PluginName("VMulti Mode")]
-    public class VMultiButtonHandler : IStateBinding, IPenActionHandler, IMouseButtonHandler
+    public class VMultiButtonHandler : IStateBinding
     {
         private VMultiInstance? _instance;
 
@@ -64,6 +64,8 @@ namespace VoiDPlugins.OutputMode
             _instance.Write();
         }
 
+
+        // Adaptive Bindings Support
         public void Activate(PenAction action)
         {
             if (_instance == null)
