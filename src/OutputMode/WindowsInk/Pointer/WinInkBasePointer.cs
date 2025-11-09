@@ -10,7 +10,7 @@ using static VoiDPlugins.OutputMode.WindowsInkConstants;
 
 namespace VoiDPlugins.OutputMode
 {
-    public unsafe abstract class WinInkBasePointer : IPressureHandler, ITiltHandler, IEraserHandler, ISynchronousPointer
+    public unsafe abstract class WinInkBasePointer : IPressureHandler, ITiltHandler, IEraserHandler, ISynchronousPointer, IPenActionHandler
     {
         private readonly Vector2 _conversionFactor;
         private readonly int _pressureConv;
@@ -106,6 +106,42 @@ namespace VoiDPlugins.OutputMode
                 Instance.Write();
             }
         }
+
+        public void Activate(PenAction action)
+        {
+            if (GetCode(action) is { } code)
+            {
+                Instance.EnableButtonBit(code);
+                if (code == (int)WindowsInkButtonFlags.Press)
+                {
+                    SharedStore.Set(TIP_PRESSED, true);
+                }
+                Instance.Write();
+            }
+        }
+
+        public void Deactivate(PenAction action)
+        {
+            if (GetCode(action) is { } code)
+            {
+                Instance.DisableButtonBit(code);
+                if (code == (int)WindowsInkButtonFlags.Press)
+                {
+                    SharedStore.Set(TIP_PRESSED, false);
+                }
+                Instance.Write();
+            }
+        }
+
+        private static int? GetCode(PenAction button) => button switch
+        {
+            PenAction.Tip => (int)WindowsInkButtonFlags.Press,
+            PenAction.Eraser => (int)WindowsInkButtonFlags.Press,
+            PenAction.BarrelButton1 => (int)WindowsInkButtonFlags.Barrel,
+            PenAction.BarrelButton2 => (int)WindowsInkButtonFlags.Barrel,
+            PenAction.BarrelButton3 => (int)WindowsInkButtonFlags.Barrel,
+            _ => null,
+        };
 
         protected Vector2 Convert(Vector2 pos)
         {

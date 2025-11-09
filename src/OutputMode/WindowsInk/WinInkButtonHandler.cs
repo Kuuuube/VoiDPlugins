@@ -1,6 +1,5 @@
 using OpenTabletDriver.Plugin;
 using OpenTabletDriver.Plugin.Attributes;
-using OpenTabletDriver.Plugin.Platform.Pointer;
 using OpenTabletDriver.Plugin.Tablet;
 using VoiDPlugins.Library.VMulti;
 using VoiDPlugins.Library.VMulti.Device;
@@ -10,7 +9,7 @@ using static VoiDPlugins.OutputMode.WindowsInkConstants;
 namespace VoiDPlugins.OutputMode
 {
     [PluginName("Windows Ink")]
-    public unsafe partial class WindowsInkButtonHandler : IStateBinding, IPenActionHandler
+    public unsafe partial class WindowsInkButtonHandler : IStateBinding
     {
         private VMultiInstance _instance = null!;
         private SharedStore _sharedStore = null!;
@@ -131,31 +130,5 @@ namespace VoiDPlugins.OutputMode
                 report->Pressure = pressure;
             }
         }
-
-        public void Activate(PenAction action)
-        {
-            if (GetCode(action) is { } code)
-            {
-                _instance.EnableButtonBit(code);
-            }
-        }
-
-        public void Deactivate(PenAction action)
-        {
-            if (GetCode(action) is { } code)
-            {
-                _instance.DisableButtonBit(code);
-            }
-        }
-
-        private static int? GetCode(PenAction button) => button switch
-        {
-            PenAction.Tip => (int)WindowsInkButtonFlags.Press,
-            PenAction.Eraser => (int)WindowsInkButtonFlags.Press,
-            PenAction.BarrelButton1 => (int)WindowsInkButtonFlags.Barrel,
-            PenAction.BarrelButton2 => (int)WindowsInkButtonFlags.Barrel,
-            PenAction.BarrelButton3 => (int)WindowsInkButtonFlags.Barrel,
-            _ => null,
-        };
     }
 }
