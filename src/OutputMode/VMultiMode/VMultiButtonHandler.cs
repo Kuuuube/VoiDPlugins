@@ -11,7 +11,7 @@ using static VoiDPlugins.OutputMode.VMultiModeConstants;
 namespace VoiDPlugins.OutputMode
 {
     [PluginName("VMulti Mode")]
-    public class VMultiButtonHandler : IStateBinding
+    public class VMultiButtonHandler : IStateBinding, IPenActionHandler, IMouseButtonHandler
     {
         private VMultiInstance? _instance;
 
@@ -93,6 +93,36 @@ namespace VoiDPlugins.OutputMode
             PenAction.BarrelButton1 => Bindings["Right"],
             PenAction.BarrelButton2 => Bindings["Middle"],
             PenAction.BarrelButton3 => null,
+            _ => null,
+        };
+
+        public void MouseUp(MouseButton button)
+        {
+            if (_instance == null)
+                return;
+
+            if (GetCode(button) is { } code)
+            {
+                _instance.EnableButtonBit(code);
+            }
+        }
+
+        public void MouseDown(MouseButton button)
+        {
+            if (_instance == null)
+                return;
+
+            if (GetCode(button) is { } code)
+            {
+                _instance.DisableButtonBit(code);
+            }
+        }
+
+        private static int? GetCode(MouseButton button) => button switch
+        {
+            MouseButton.Left => Bindings["Left"],
+            MouseButton.Middle => Bindings["Middle"],
+            MouseButton.Right => Bindings["Right"],
             _ => null,
         };
     }
