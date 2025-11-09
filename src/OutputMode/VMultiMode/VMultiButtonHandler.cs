@@ -74,6 +74,7 @@ namespace VoiDPlugins.OutputMode
             if (GetCode(action) is { } code)
             {
                 _instance.EnableButtonBit(code);
+                _instance.Write();
             }
         }
 
@@ -85,6 +86,7 @@ namespace VoiDPlugins.OutputMode
             if (GetCode(action) is { } code)
             {
                 _instance.DisableButtonBit(code);
+                _instance.Write();
             }
         }
 
@@ -106,6 +108,7 @@ namespace VoiDPlugins.OutputMode
             if (GetCode(button) is { } code)
             {
                 _instance.EnableButtonBit(code);
+                _instance.Write();
             }
         }
 
@@ -117,6 +120,7 @@ namespace VoiDPlugins.OutputMode
             if (GetCode(button) is { } code)
             {
                 _instance.DisableButtonBit(code);
+                _instance.Write();
             }
         }
 
