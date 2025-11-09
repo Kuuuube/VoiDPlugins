@@ -9,7 +9,7 @@ using static VoiDPlugins.OutputMode.VMultiModeConstants;
 
 namespace VoiDPlugins.OutputMode
 {
-    public unsafe class VMultiAbsolutePointer : VMultiButtonHandler, IAbsolutePointer, ISynchronousPointer, IPenActionHandler
+    public unsafe class VMultiAbsolutePointer : IAbsolutePointer, ISynchronousPointer, IPenActionHandler, IMouseButtonHandler
     {
         private readonly AbsoluteInputReport* _rawPointer;
         private readonly VMultiInstance<AbsoluteInputReport> _instance;
@@ -56,5 +56,10 @@ namespace VoiDPlugins.OutputMode
                 _instance.Write();
             }
         }
+
+        public void Activate(PenAction action) => VMultiButtonHandler.Activate(action, _instance);
+        public void Deactivate(PenAction action) => VMultiButtonHandler.Deactivate(action, _instance);
+        public void MouseDown(MouseButton action) => VMultiButtonHandler.MouseDown(action, _instance);
+        public void MouseUp(MouseButton action) => VMultiButtonHandler.MouseUp(action, _instance);
     }
 }

@@ -66,27 +66,27 @@ namespace VoiDPlugins.OutputMode
 
 
         // Adaptive Bindings Support
-        public void Activate(PenAction action)
+        public static void Activate(PenAction action, VMultiInstance? Instance)
         {
-            if (_instance == null)
+            if (Instance == null)
                 return;
 
             if (GetCode(action) is { } code)
             {
-                _instance.EnableButtonBit(code);
-                _instance.Write();
+                Instance.EnableButtonBit(code);
+                Instance.Write();
             }
         }
 
-        public void Deactivate(PenAction action)
+        public static void Deactivate(PenAction action, VMultiInstance? Instance)
         {
-            if (_instance == null)
+            if (Instance == null)
                 return;
 
             if (GetCode(action) is { } code)
             {
-                _instance.DisableButtonBit(code);
-                _instance.Write();
+                Instance.DisableButtonBit(code);
+                Instance.Write();
             }
         }
 
@@ -100,27 +100,27 @@ namespace VoiDPlugins.OutputMode
             _ => null,
         };
 
-        public void MouseUp(MouseButton button)
+        public static void MouseUp(MouseButton button, VMultiInstance? Instance)
         {
-            if (_instance == null)
+            if (Instance == null)
                 return;
 
             if (GetCode(button) is { } code)
             {
-                _instance.EnableButtonBit(code);
-                _instance.Write();
+                Instance.EnableButtonBit(code);
+                Instance.Write();
             }
         }
 
-        public void MouseDown(MouseButton button)
+        public static void MouseDown(MouseButton button, VMultiInstance? Instance)
         {
-            if (_instance == null)
+            if (Instance == null)
                 return;
 
             if (GetCode(button) is { } code)
             {
-                _instance.DisableButtonBit(code);
-                _instance.Write();
+                Instance.DisableButtonBit(code);
+                Instance.Write();
             }
         }
 
