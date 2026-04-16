@@ -42,13 +42,13 @@ namespace VoiDPlugins.Library.PenPointer
             {
                 new POINTER_TYPE_INFO
                 {
-                    type = POINTER_INPUT_TYPE.PT_PEN,
+                    type = pointerType,
                     penInfo = _penInfo
                 }
             };
 
             // Retrieve handle to custom pen
-            _penHandle = NativeMethods.CreateSyntheticPointerDevice(POINTER_INPUT_TYPE.PT_PEN, 1, POINTER_FEEDBACK_MODE.INDIRECT);
+            _penHandle = NativeMethods.CreateSyntheticPointerDevice(pointerType, 1, POINTER_FEEDBACK_MODE.INDIRECT);
             var err = Marshal.GetLastWin32Error();
             if (err < 0 || _penHandle == IntPtr.Zero)
                 throw new Exception("Failed to create handle.");
