@@ -5,14 +5,14 @@ namespace VoiDPlugins.OutputMode
 {
     public class TouchPointerHandler : IAbsolutePointer, IPressureHandler, ISynchronousPointer
     {
-        private readonly TouchDevice _touchDevice;
+        private readonly PointerDevice _touchDevice;
         private bool _inContact;
         private bool _lastContact;
         private bool _dirty;
 
         public TouchPointerHandler()
         {
-            _touchDevice = new TouchDevice();
+            _touchDevice = new PointerDevice(POINTER_INPUT_TYPE.PT_TOUCH);
             _inContact = false;
             _lastContact = false;
         }

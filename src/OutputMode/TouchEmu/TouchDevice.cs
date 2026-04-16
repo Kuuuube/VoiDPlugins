@@ -1,23 +1,23 @@
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace VoiDPlugins.OutputMode
 {
-    public class TouchDevice
+    public class PointerDevice
     {
         private readonly IntPtr _penHandle;
-        private readonly POINTER_TYPE_INFO[]? pointer;
-        private readonly IntPtr _sourceDevice;
+        private readonly POINTER_TYPE_INFO[] pointer;
 
-        public unsafe TouchDevice()
+        public PointerDevice(POINTER_INPUT_TYPE pointerType)
         {
             var _pointerInfo = new POINTER_INFO
             {
-                pointerType = POINTER_INPUT_TYPE.PT_TOUCH,
+                pointerType = pointerType,
                 pointerId = 1,
                 frameId = 0,
                 pointerFlags = POINTER_FLAGS.NONE,
-                sourceDevice = _sourceDevice,
+                sourceDevice = new IntPtr(),
                 ptPixelLocation = new POINT(),
                 ptPixelLocationRaw = new POINT(),
                 dwTime = 0,
@@ -31,11 +31,11 @@ namespace VoiDPlugins.OutputMode
             {
                 pointerInfo = _pointerInfo,
                 pointerFlags = PEN_FLAGS.NONE,
-                penMask = PEN_MASK.PRESSURE,
-                pressure = 512,
-                rotation = 0,
-                tiltX = 0,
-                tiltY = 0
+                penMask = PEN_MASK.PRESSURE | PEN_MASK.TILT_X | PEN_MASK.TILT_Y,
+                pressure = 0, // 0 to 1024
+                rotation = 0, // 0 to 359 (degrees clockwise)
+                tiltX = 0, // -90 to +90
+                tiltY = 0 // -90 to +90
             };
 
             pointer = new POINTER_TYPE_INFO[]
@@ -85,6 +85,12 @@ namespace VoiDPlugins.OutputMode
             pointer![0].penInfo.pressure = pressure;
         }
 
+        public void SetTilt(Vector2 tilt)
+        {
+            pointer![0].penInfo.tiltX = (int)tilt.X;
+            pointer![0].penInfo.tiltY = (int)tilt.Y;
+        }
+
         public void SetPointerFlags(POINTER_FLAGS flags)
         {
             pointer![0].penInfo.pointerInfo.pointerFlags |= flags;
@@ -93,6 +99,16 @@ namespace VoiDPlugins.OutputMode
         public void UnsetPointerFlags(POINTER_FLAGS flags)
         {
             pointer![0].penInfo.pointerInfo.pointerFlags &= ~flags;
+        }
+
+        public void SetPenFlags(PEN_FLAGS flags)
+        {
+            pointer![0].penInfo.pointerFlags |= flags;
+        }
+
+        public void UnsetPenFlags(PEN_FLAGS flags)
+        {
+            pointer![0].penInfo.pointerFlags &= ~flags;
         }
 
         public void ClearPointerFlags()
