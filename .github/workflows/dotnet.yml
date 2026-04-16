@@ -15,6 +15,7 @@ jobs:
           - { path: OutputMode, plugin: TouchEmu }
           - { path: OutputMode, plugin: VMultiMode }
           - { path: OutputMode, plugin: WindowsInk }
+          - { path: OutputMode, plugin: WindowsPenPointer }
 
     runs-on: ubuntu-latest
 
