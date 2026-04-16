@@ -13,7 +13,7 @@ namespace VoiDPlugins.OutputMode
         {
             var _pointerInfo = new POINTER_INFO
             {
-                pointerType = POINTER_INPUT_TYPE.PT_PEN,
+                pointerType = POINTER_INPUT_TYPE.PT_TOUCH,
                 pointerId = 1,
                 frameId = 0,
                 pointerFlags = POINTER_FLAGS.NONE,
