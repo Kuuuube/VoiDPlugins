@@ -86,7 +86,7 @@ namespace VoiDPlugins.OutputMode
         private static PEN_FLAGS GetCode(PenAction button) => button switch
         {
             PenAction.Tip => PEN_FLAGS.NONE, // tip is handled via pressure
-            PenAction.Eraser => PEN_FLAGS.NONE, // eraser is handled via pressure
+            PenAction.Eraser => PEN_FLAGS.ERASER, // eraser is handled via pressure
             PenAction.BarrelButton1 => PEN_FLAGS.BARREL,
             PenAction.BarrelButton2 => PEN_FLAGS.BARREL,
             PenAction.BarrelButton3 => PEN_FLAGS.BARREL,
