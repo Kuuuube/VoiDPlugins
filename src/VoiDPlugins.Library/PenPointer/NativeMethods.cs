@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
-namespace VoiDPlugins.OutputMode
+namespace VoiDPlugins.Library.PenPointer
 {
     using HANDLE = IntPtr;
     using HWND = IntPtr;

@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace VoiDPlugins.OutputMode
+namespace VoiDPlugins.Library.PenPointer
 {
     public class PointerDevice
     {

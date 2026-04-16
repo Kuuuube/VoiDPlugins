@@ -3,6 +3,7 @@
     <ProjectReference Condition="'$(NotPluginProject)' != 'true'" Include="$(MSBuildThisFileDirectory)/../.modules/OpenTabletDriver/OpenTabletDriver.Plugin/OpenTabletDriver.Plugin.csproj" >
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Condition="'$(VMultiLibrary)' == 'true'" Include="$(MSBuildThisFileDirectory)/VoiDPlugins.Library/PenPointer/PenPointer.csproj" />
     <ProjectReference Condition="'$(VMultiLibrary)' == 'true'" Include="$(MSBuildThisFileDirectory)/VoiDPlugins.Library/VMulti/VMulti.csproj" />
     <ProjectReference Condition="'$(VoiDLibrary)' == 'true'" Include="$(MSBuildThisFileDirectory)/VoiDPlugins.Library/VoiD/VoiD.csproj" />
   </ItemGroup>

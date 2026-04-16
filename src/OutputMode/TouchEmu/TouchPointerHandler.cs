@@ -1,5 +1,6 @@
 using System.Numerics;
 using OpenTabletDriver.Plugin.Platform.Pointer;
+using VoiDPlugins.Library.PenPointer;
 
 namespace VoiDPlugins.OutputMode
 {
