@@ -21,6 +21,7 @@ namespace VoiDPlugins.OutputMode
         protected VMultiInstance<DigitizerInputReport> Instance { get; }
         protected SharedStore SharedStore { get; }
         protected bool Dirty { get; set; }
+        protected bool MouseButtonPressed { get; set; }
 
         public bool Sync
         {
@@ -153,7 +154,7 @@ namespace VoiDPlugins.OutputMode
             _internalPos = pos;
         }
 
-        private void SyncOSCursor()
+        protected void SyncOSCursor()
         {
             _osPointer?.SetPosition(_internalPos);
         }
@@ -183,6 +184,7 @@ namespace VoiDPlugins.OutputMode
 
         public void MouseDown(MouseButton button)
         {
+            MouseButtonPressed = true;
             SendOutOfRange();
             SyncOSCursor();
             var buttonCode = GetOSButtonCodeDown(button);
@@ -204,6 +206,7 @@ namespace VoiDPlugins.OutputMode
                 return;
             }
             _osPointer?.SetButton(buttonCode);
+            MouseButtonPressed = false;
         }
     }
 }
