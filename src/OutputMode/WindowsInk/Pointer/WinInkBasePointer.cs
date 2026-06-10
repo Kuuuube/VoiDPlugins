@@ -185,13 +185,25 @@ namespace VoiDPlugins.OutputMode
         {
             SendOutOfRange();
             SyncOSCursor();
-            _osPointer?.SetButton(GetOSButtonCodeDown(button));
+            var buttonCode = GetOSButtonCodeDown(button);
+            if (buttonCode == 0)
+            {
+                Log.Write("WinInk", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
+                return;
+            }
+            _osPointer?.SetButton(buttonCode);
         }
 
         public void MouseUp(MouseButton button)
         {
             SyncOSCursor();
-            _osPointer?.SetButton(GetOSButtonCodeUp(button));
+            var buttonCode = GetOSButtonCodeUp(button);
+            if (buttonCode == 0)
+            {
+                Log.Write("WinInk", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
+                return;
+            }
+            _osPointer?.SetButton(buttonCode);
         }
     }
 }
