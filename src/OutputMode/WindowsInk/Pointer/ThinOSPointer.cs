@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using OpenTabletDriver.Plugin.Platform.Display;
+using OpenTabletDriver.Plugin.Platform.Pointer;
 
 namespace VoiDPlugins.OutputMode
 {
@@ -75,6 +76,29 @@ namespace VoiDPlugins.OutputMode
             _inputs[0].mouse.dwFlags = MOUSEEVENTF.ABSOLUTE | MOUSEEVENTF.MOVE | MOUSEEVENTF.VIRTUALDESK;
             _inputs[0].mouse.dx = (int)converted.X;
             _inputs[0].mouse.dy = (int)converted.Y;
+            _ = SendInput(1, _inputs, INPUT.Size);
+        }
+
+        private static uint GetCodeDown(MouseButton button) => button switch
+        {
+            MouseButton.Left => (uint)MOUSEEVENTF.LEFTDOWN,
+            MouseButton.Middle => (uint)MOUSEEVENTF.MIDDLEDOWN,
+            MouseButton.Right => (uint)MOUSEEVENTF.RIGHTDOWN,
+            _ => 0,
+        };
+
+        private static uint GetCodeUp(MouseButton button) => button switch
+        {
+            MouseButton.Left => (uint)MOUSEEVENTF.LEFTUP,
+            MouseButton.Middle => (uint)MOUSEEVENTF.MIDDLEUP,
+            MouseButton.Right => (uint)MOUSEEVENTF.RIGHTUP,
+            _ => 0,
+        };
+
+        public void SetButton(MouseButton button, bool pressed)
+        {
+            var mouseEventCode = pressed ? GetCodeDown(button) : GetCodeUp(button);
+            _inputs[0].mouse.dwFlags = (MOUSEEVENTF)mouseEventCode;
             _ = SendInput(1, _inputs, INPUT.Size);
         }
 

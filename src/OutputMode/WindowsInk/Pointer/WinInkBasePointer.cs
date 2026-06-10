@@ -10,7 +10,7 @@ using static VoiDPlugins.OutputMode.WindowsInkConstants;
 
 namespace VoiDPlugins.OutputMode
 {
-    public unsafe abstract class WinInkBasePointer : IPressureHandler, ITiltHandler, IEraserHandler, ISynchronousPointer, IPenActionHandler
+    public unsafe abstract class WinInkBasePointer : IPressureHandler, ITiltHandler, IEraserHandler, ISynchronousPointer, IPenActionHandler, IMouseButtonHandler
     {
         private readonly Vector2 _conversionFactor;
         private readonly int _pressureConv;
@@ -156,6 +156,18 @@ namespace VoiDPlugins.OutputMode
         private void SyncOSCursor()
         {
             _osPointer?.SetPosition(_internalPos);
+        }
+
+        public void MouseDown(MouseButton button)
+        {
+            SyncOSCursor();
+            _osPointer?.SetButton(button, true);
+        }
+
+        public void MouseUp(MouseButton button)
+        {
+            SyncOSCursor();
+            _osPointer?.SetButton(button, false);
         }
     }
 }
