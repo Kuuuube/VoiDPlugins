@@ -23,8 +23,14 @@ namespace VoiDPlugins.OutputMode
                 return;
 
             _currentPoint = Vector2.Clamp(_currentPoint + delta, Vector2.Zero, _maxPoint);
-
             SetInternalPosition(_currentPoint);
+
+            if (MouseButtonPressed)
+            {
+                SyncOSCursor();
+                return;
+            }
+
             Instance.EnableButtonBit((int)WindowsInkButtonFlags.InRange);
             var pos = Convert(_currentPoint);
             RawPointer->X = (ushort)pos.X;
