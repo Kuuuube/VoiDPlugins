@@ -46,7 +46,8 @@ namespace VoiDPlugins.OutputMode
 
         public override IAbsolutePointer Pointer
         {
-            get {
+            get
+            {
                 if (_pointer != null)
                 {
                     return _pointer;

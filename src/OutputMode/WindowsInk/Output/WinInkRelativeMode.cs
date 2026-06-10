@@ -48,7 +48,8 @@ namespace VoiDPlugins.OutputMode
 
         public override IRelativePointer Pointer
         {
-            get {
+            get
+            {
                 if (_pointer != null)
                 {
                     return _pointer;
