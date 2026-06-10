@@ -198,7 +198,6 @@ namespace VoiDPlugins.OutputMode
 
         public void MouseUp(MouseButton button)
         {
-            SyncOSCursor();
             var buttonCode = GetOSButtonCodeUp(button);
             if (buttonCode == 0)
             {
