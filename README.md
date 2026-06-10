@@ -1,4 +1,4 @@
-# VoiDPlugins [![.NET](https://github.com/X9VoiD/VoiDPlugins/actions/workflows/dotnet.yml/badge.svg)](https://github.com/X9VoiD/VoiDPlugins/actions/workflows/dotnet.yml)
+# VoiDPlugins [![.NET](https://github.com/Kuuuube/VoiDPlugins/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Kuuuube/VoiDPlugins/actions/workflows/dotnet.yml)
 
 VoiDPlugins is a collection of extensions for [OpenTabletDriver](https://github.com/InfinityGhost/OpenTabletDriver).
 
@@ -6,39 +6,39 @@ VoiDPlugins is a collection of extensions for [OpenTabletDriver](https://github.
 
 ## Experimental
 
-### [MeL](https://github.com/X9VoiD/VoiDPlugins/wiki/MeL)
+### [MeL](https://github.com/Kuuuube/VoiDPlugins/wiki/MeL)
 
       Machine Learning Plugin
 
-### [Reconstructor](https://github.com/X9VoiD/VoiDPlugins/wiki/Reconstructor)
+### [Reconstructor](https://github.com/Kuuuube/VoiDPlugins/wiki/Reconstructor)
 
       Mathematically perfect "anti-hardware-smoothing"
 
 ## Filters
 
-### [PrecisionControl](https://github.com/X9VoiD/VoiDPlugins/wiki/PrecisionControl)
+### [PrecisionControl](https://github.com/Kuuuube/VoiDPlugins/wiki/PrecisionControl)
 
       Dynamic sensitivity switching
 
 ## Output Modes
 
-### [WindowsInk](https://github.com/X9VoiD/VoiDPlugins/wiki/WindowsInk)
+### [WindowsInk](https://github.com/Kuuuube/VoiDPlugins/wiki/WindowsInk)
 
       Pen pressure support
       100% compliance to Windows Ink
       Upto 8192 levels of pressure
 
-### [VMultiMode](https://github.com/X9VoiD/VoiDPlugins/wiki/VMultiMode)
+### [VMultiMode](https://github.com/Kuuuube/VoiDPlugins/wiki/VMultiMode)
 
       Classic VMulti input emulation
 
-### [TouchEmu](https://github.com/X9VoiD/VoiDPlugins/wiki/TouchEmu)
+### [TouchEmu](https://github.com/Kuuuube/VoiDPlugins/wiki/TouchEmu)
 
       Touch input emulation (RawInput incompatible)
       Natural Scrolling everywhere
 
 ## Bindings
 
-### [ScriptRunner](https://github.com/X9VoiD/VoiDPlugins/wiki/ScriptRunner)
+### [ScriptRunner](https://github.com/Kuuuube/VoiDPlugins/wiki/ScriptRunner)
 
       Bind shell commands, scripts or programs to OTD
