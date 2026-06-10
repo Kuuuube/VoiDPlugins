@@ -100,7 +100,7 @@ namespace VoiDPlugins.OutputMode
             _ => null,
         };
 
-        public static void MouseUp(MouseButton button, VMultiInstance? Instance)
+        public static void MouseDown(MouseButton button, VMultiInstance? Instance)
         {
             if (Instance == null)
                 return;
@@ -112,7 +112,7 @@ namespace VoiDPlugins.OutputMode
             }
         }
 
-        public static void MouseDown(MouseButton button, VMultiInstance? Instance)
+        public static void MouseUp(MouseButton button, VMultiInstance? Instance)
         {
             if (Instance == null)
                 return;
