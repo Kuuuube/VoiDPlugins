@@ -26,7 +26,7 @@ VoiDPlugins is a collection of extensions for [OpenTabletDriver](https://github.
 
       Pen pressure support
       100% compliance to Windows Ink
-      Upto 8192 levels of pressure
+      Upto 16384 levels of pressure
 
 ### [VMultiMode](https://github.com/Kuuuube/VoiDPlugins/wiki/VMultiMode)
 
