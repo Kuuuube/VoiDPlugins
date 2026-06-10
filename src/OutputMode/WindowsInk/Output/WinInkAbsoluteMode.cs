@@ -46,12 +46,13 @@ namespace VoiDPlugins.OutputMode
 
         public override IAbsolutePointer Pointer
         {
-            get {
+            get
+            {
                 if (_pointer != null)
                 {
                     return _pointer;
                 }
-                Log.Write("Windows Ink", "Pointer reference not available, returning dummy");
+                Log.Write("WinInk", "Pointer reference not available, returning dummy");
                 return _dummyPointer;
             }
             set { }

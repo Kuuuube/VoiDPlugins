@@ -10,7 +10,7 @@ using static VoiDPlugins.OutputMode.WindowsInkConstants;
 
 namespace VoiDPlugins.OutputMode
 {
-    public unsafe abstract class WinInkBasePointer : IPressureHandler, ITiltHandler, IEraserHandler, ISynchronousPointer, IPenActionHandler
+    public unsafe abstract class WinInkBasePointer : IPressureHandler, ITiltHandler, IEraserHandler, ISynchronousPointer, IPenActionHandler, IMouseButtonHandler
     {
         private readonly Vector2 _conversionFactor;
         private readonly int _pressureConv;
@@ -21,6 +21,7 @@ namespace VoiDPlugins.OutputMode
         protected VMultiInstance<DigitizerInputReport> Instance { get; }
         protected SharedStore SharedStore { get; }
         protected bool Dirty { get; set; }
+        protected bool MouseButtonPressed { get; set; }
 
         public bool Sync
         {
@@ -153,9 +154,52 @@ namespace VoiDPlugins.OutputMode
             _internalPos = pos;
         }
 
-        private void SyncOSCursor()
+        protected void SyncOSCursor()
         {
             _osPointer?.SetPosition(_internalPos);
+        }
+
+        protected void SendOutOfRange()
+        {
+            var report = (DigitizerInputReport*)Instance.Header;
+            report->Header.Buttons = 0;
+            Instance.Write();
+        }
+
+        private static MOUSEEVENTF GetOSButtonCodeDown(MouseButton button) => button switch
+        {
+            MouseButton.Left => MOUSEEVENTF.LEFTDOWN,
+            MouseButton.Middle => MOUSEEVENTF.MIDDLEDOWN,
+            MouseButton.Right => MOUSEEVENTF.RIGHTDOWN,
+            _ => 0,
+        };
+
+        private static MOUSEEVENTF GetOSButtonCodeUp(MouseButton button) => button switch
+        {
+            MouseButton.Left => MOUSEEVENTF.LEFTUP,
+            MouseButton.Middle => MOUSEEVENTF.MIDDLEUP,
+            MouseButton.Right => MOUSEEVENTF.RIGHTUP,
+            _ => 0,
+        };
+
+        public void MouseDown(MouseButton button)
+        {
+            MouseButtonPressed = true;
+            SendOutOfRange();
+            SyncOSCursor();
+            var buttonCode = GetOSButtonCodeDown(button);
+            if (buttonCode == 0)
+                Log.Write("WinInk", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
+            _osPointer?.SetButton(buttonCode);
+        }
+
+        public void MouseUp(MouseButton button)
+        {
+            var buttonCode = GetOSButtonCodeUp(button);
+            if (buttonCode == 0)
+                Log.Write("WinInk", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
+            _osPointer?.SetButton(buttonCode);
+            MouseButtonPressed = false;
         }
     }
 }

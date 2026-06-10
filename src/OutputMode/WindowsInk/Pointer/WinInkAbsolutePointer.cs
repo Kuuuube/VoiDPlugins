@@ -20,12 +20,19 @@ namespace VoiDPlugins.OutputMode
                 return;
 
             SetInternalPosition(pos);
+            _prev = pos;
+
+            if (MouseButtonPressed)
+            {
+                SyncOSCursor();
+                return;
+            }
+
             Instance.EnableButtonBit((int)WindowsInkButtonFlags.InRange);
             pos = Convert(pos);
             RawPointer->X = (ushort)pos.X;
             RawPointer->Y = (ushort)pos.Y;
             Dirty = true;
-            _prev = pos;
         }
     }
 }

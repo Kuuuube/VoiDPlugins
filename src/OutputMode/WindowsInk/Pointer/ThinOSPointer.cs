@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using OpenTabletDriver.Plugin.Platform.Display;
+using OpenTabletDriver.Plugin.Platform.Pointer;
 
 namespace VoiDPlugins.OutputMode
 {
@@ -75,6 +76,12 @@ namespace VoiDPlugins.OutputMode
             _inputs[0].mouse.dwFlags = MOUSEEVENTF.ABSOLUTE | MOUSEEVENTF.MOVE | MOUSEEVENTF.VIRTUALDESK;
             _inputs[0].mouse.dx = (int)converted.X;
             _inputs[0].mouse.dy = (int)converted.Y;
+            _ = SendInput(1, _inputs, INPUT.Size);
+        }
+
+        public void SetButton(MOUSEEVENTF mouseEventCode)
+        {
+            _inputs[0].mouse.dwFlags = mouseEventCode;
             _ = SendInput(1, _inputs, INPUT.Size);
         }
 
