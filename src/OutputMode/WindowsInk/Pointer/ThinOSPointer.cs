@@ -79,26 +79,9 @@ namespace VoiDPlugins.OutputMode
             _ = SendInput(1, _inputs, INPUT.Size);
         }
 
-        private static uint GetCodeDown(MouseButton button) => button switch
+        public void SetButton(MOUSEEVENTF mouseEventCode)
         {
-            MouseButton.Left => (uint)MOUSEEVENTF.LEFTDOWN,
-            MouseButton.Middle => (uint)MOUSEEVENTF.MIDDLEDOWN,
-            MouseButton.Right => (uint)MOUSEEVENTF.RIGHTDOWN,
-            _ => 0,
-        };
-
-        private static uint GetCodeUp(MouseButton button) => button switch
-        {
-            MouseButton.Left => (uint)MOUSEEVENTF.LEFTUP,
-            MouseButton.Middle => (uint)MOUSEEVENTF.MIDDLEUP,
-            MouseButton.Right => (uint)MOUSEEVENTF.RIGHTUP,
-            _ => 0,
-        };
-
-        public void SetButton(MouseButton button, bool pressed)
-        {
-            var mouseEventCode = pressed ? GetCodeDown(button) : GetCodeUp(button);
-            _inputs[0].mouse.dwFlags = (MOUSEEVENTF)mouseEventCode;
+            _inputs[0].mouse.dwFlags = mouseEventCode;
             _ = SendInput(1, _inputs, INPUT.Size);
         }
 

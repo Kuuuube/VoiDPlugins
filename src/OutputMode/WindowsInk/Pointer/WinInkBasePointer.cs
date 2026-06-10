@@ -158,16 +158,32 @@ namespace VoiDPlugins.OutputMode
             _osPointer?.SetPosition(_internalPos);
         }
 
+        private static MOUSEEVENTF GetOSButtonCodeDown(MouseButton button) => button switch
+        {
+            MouseButton.Left => MOUSEEVENTF.LEFTDOWN,
+            MouseButton.Middle => MOUSEEVENTF.MIDDLEDOWN,
+            MouseButton.Right => MOUSEEVENTF.RIGHTDOWN,
+            _ => 0,
+        };
+
+        private static MOUSEEVENTF GetOSButtonCodeUp(MouseButton button) => button switch
+        {
+            MouseButton.Left => MOUSEEVENTF.LEFTUP,
+            MouseButton.Middle => MOUSEEVENTF.MIDDLEUP,
+            MouseButton.Right => MOUSEEVENTF.RIGHTUP,
+            _ => 0,
+        };
+
         public void MouseDown(MouseButton button)
         {
             SyncOSCursor();
-            _osPointer?.SetButton(button, true);
+            _osPointer?.SetButton(GetOSButtonCodeDown(button));
         }
 
         public void MouseUp(MouseButton button)
         {
             SyncOSCursor();
-            _osPointer?.SetButton(button, false);
+            _osPointer?.SetButton(GetOSButtonCodeUp(button));
         }
     }
 }
