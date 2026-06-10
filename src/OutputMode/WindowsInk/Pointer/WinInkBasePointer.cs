@@ -191,7 +191,6 @@ namespace VoiDPlugins.OutputMode
             if (buttonCode == 0)
             {
                 Log.Write("WinInk", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
-                return;
             }
             _osPointer?.SetButton(buttonCode);
         }
@@ -202,7 +201,6 @@ namespace VoiDPlugins.OutputMode
             if (buttonCode == 0)
             {
                 Log.Write("WinInk", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
-                return;
             }
             _osPointer?.SetButton(buttonCode);
             MouseButtonPressed = false;
