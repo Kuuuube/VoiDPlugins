@@ -105,7 +105,11 @@ namespace VoiDPlugins.OutputMode
             if (Instance == null)
                 return;
 
-            if (GetCode(button) is { } code)
+            var buttonCode = GetCode(button);
+            if (buttonCode == null)
+                Log.Write("VMulti", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
+
+            if (buttonCode is { } code)
             {
                 Instance.EnableButtonBit(code);
                 Instance.Write();
@@ -117,7 +121,11 @@ namespace VoiDPlugins.OutputMode
             if (Instance == null)
                 return;
 
-            if (GetCode(button) is { } code)
+            var buttonCode = GetCode(button);
+            if (buttonCode == null)
+                Log.Write("VMulti", $"Attempted use of incompatible mouse button with Windows Ink output mode: {button}.", LogLevel.Error);
+
+            if (buttonCode is { } code)
             {
                 Instance.DisableButtonBit(code);
                 Instance.Write();
