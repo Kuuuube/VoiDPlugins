@@ -158,6 +158,13 @@ namespace VoiDPlugins.OutputMode
             _osPointer?.SetPosition(_internalPos);
         }
 
+        protected void SendOutOfRange()
+        {
+            var report = (DigitizerInputReport*)Instance.Header;
+            report->Header.Buttons = 0;
+            Instance.Write();
+        }
+
         private static MOUSEEVENTF GetOSButtonCodeDown(MouseButton button) => button switch
         {
             MouseButton.Left => MOUSEEVENTF.LEFTDOWN,
@@ -176,6 +183,7 @@ namespace VoiDPlugins.OutputMode
 
         public void MouseDown(MouseButton button)
         {
+            SendOutOfRange();
             SyncOSCursor();
             _osPointer?.SetButton(GetOSButtonCodeDown(button));
         }
