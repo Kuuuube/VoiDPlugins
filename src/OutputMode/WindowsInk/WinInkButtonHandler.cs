@@ -17,6 +17,7 @@ namespace VoiDPlugins.OutputMode
         public static string[] ValidButtons { get; } = new string[]
         {
             "Pen Tip",
+            "Eraser Tip",
             "Pen Button",
             "Eraser (Toggle)",
             "Eraser (Hold)"
@@ -52,6 +53,7 @@ namespace VoiDPlugins.OutputMode
             switch (Button)
             {
                 case "Pen Tip":
+                case "Eraser Tip":
                     _sharedStore.Set(TIP_PRESSED, true);
                     _instance.EnableButtonBit((int)(eraserState ? WindowsInkButtonFlags.Eraser : WindowsInkButtonFlags.Press));
                     break;
@@ -81,6 +83,7 @@ namespace VoiDPlugins.OutputMode
             switch (Button)
             {
                 case "Pen Tip":
+                case "Eraser Tip":
                     _sharedStore.Set(TIP_PRESSED, false);
                     _instance.DisableButtonBit((int)(WindowsInkButtonFlags.Press | WindowsInkButtonFlags.Eraser));
                     break;
