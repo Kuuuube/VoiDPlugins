@@ -31,7 +31,7 @@ namespace VoiDPlugins.Library.PenPointer
             {
                 pointerInfo = _pointerInfo,
                 pointerFlags = PEN_FLAGS.NONE,
-                penMask = PEN_MASK.PRESSURE | PEN_MASK.TILT_X | PEN_MASK.TILT_Y,
+                penMask = PEN_MASK.PRESSURE | PEN_MASK.TILT_X | PEN_MASK.TILT_Y | PEN_MASK.ROTATION,
                 pressure = 0, // 0 to 1024
                 rotation = 0, // 0 to 359 (degrees clockwise)
                 tiltX = 0, // -90 to +90
