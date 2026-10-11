@@ -11,7 +11,6 @@ namespace VoiDPlugins.OutputMode
         private bool _inContact;
         private bool _lastContact;
         private bool _dirty;
-        private bool _eraser = false;
 
         public WindowsPenPointerHandler()
         {
@@ -105,7 +104,6 @@ namespace VoiDPlugins.OutputMode
 
         public void SetEraser(bool isEraser)
         {
-            _eraser = isEraser;
             if (isEraser)
             {
                 _pointerDevice.SetPenFlags(PEN_FLAGS.INVERTED);
