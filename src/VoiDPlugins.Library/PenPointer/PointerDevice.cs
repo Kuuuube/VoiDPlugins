@@ -91,6 +91,11 @@ namespace VoiDPlugins.Library.PenPointer
             pointer![0].penInfo.tiltY = (int)tilt.Y;
         }
 
+        public void SetRotation(uint rotation)
+        {
+            pointer![0].penInfo.rotation = rotation;
+        }
+
         public void SetPointerFlags(POINTER_FLAGS flags)
         {
             pointer![0].penInfo.pointerInfo.pointerFlags |= flags;

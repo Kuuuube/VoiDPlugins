@@ -5,7 +5,7 @@ using VoiDPlugins.Library.PenPointer;
 
 namespace VoiDPlugins.OutputMode
 {
-    public class WindowsPenPointerHandler : IPenActionHandler, IAbsolutePointer, IPressureHandler, ISynchronousPointer, ITiltHandler, IEraserHandler
+    public class WindowsPenPointerHandler : IPenActionHandler, IAbsolutePointer, IPressureHandler, ISynchronousPointer, ITiltHandler, IEraserHandler, IRotationHandler
     {
         private readonly PointerDevice _pointerDevice;
         private bool _inContact;
@@ -80,6 +80,12 @@ namespace VoiDPlugins.OutputMode
         public void SetTilt(Vector2 tilt)
         {
             _pointerDevice.SetTilt(tilt);
+        }
+
+        public void SetRotation(float percentage)
+        {
+            var rotation = (uint)(percentage * 359);
+            _pointerDevice.SetRotation(rotation);
         }
 
         private static PEN_FLAGS GetCode(PenAction button) => button switch
