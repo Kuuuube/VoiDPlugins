@@ -37,6 +37,8 @@ build_plugin() {
     wrap_exec rm "$plugin_output/${plugin##*/}.deps.json"
     wrap_exec rm "$plugin_output/OpenTabletDriver.Plugin.dll"
     wrap_exec rm "$plugin_output/OpenTabletDriver.Plugin.pdb"
+    wrap_exec rm "$plugin_output/Newtonsoft.Json.dll"
+    wrap_exec rm "$plugin_output/JetBrains.Annotations.dll"
 }
 
 generate_zip() {
