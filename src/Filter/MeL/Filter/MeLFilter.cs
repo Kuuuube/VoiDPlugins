@@ -29,8 +29,10 @@ namespace VoiDPlugins.Filter.MeL
         [Property("Weight"), DefaultPropertyValue(1.4f)]
         public float Weight { set => Core.Weight = value; }
 
-        public void Consume(IDeviceReport value)
+        public void Consume(IDeviceReport? value)
         {
+            if (value == null) return;
+
             if (value is ITabletReport report)
             {
                 Core.Add(report.Position);

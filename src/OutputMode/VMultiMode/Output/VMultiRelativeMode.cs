@@ -11,17 +11,19 @@ namespace VoiDPlugins.OutputMode
     {
         private VMultiRelativePointer? _pointer;
         private readonly DummyRelativePointer _dummyPointer = new();
-        public override TabletReference Tablet
+        public override TabletReference? Tablet
         {
             get => base.Tablet;
             set
             {
                 base.Tablet = value;
+                if (value == null) return; // null = no tablet
+
                 _pointer = new VMultiRelativePointer(value);
             }
         }
 
-        public override IRelativePointer Pointer
+        public override IRelativePointer? Pointer
         {
             get
             {

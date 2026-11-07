@@ -8,6 +8,6 @@ namespace VoiDPlugins.OutputMode
     [PluginName("Windows Pen Pointer"), SupportedPlatform(PluginPlatform.Windows)]
     public class WindowsPenPointerOutputMode : AbsoluteOutputMode
     {
-        public override IAbsolutePointer Pointer { get; set; } = new WindowsPenPointerHandler();
+        public override IAbsolutePointer? Pointer { get; set; } = new WindowsPenPointerHandler();
     }
 }

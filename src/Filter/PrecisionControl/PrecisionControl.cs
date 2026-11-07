@@ -46,8 +46,10 @@ namespace VoiDPlugins.Filter
 
         public PipelinePosition Position => PipelinePosition.PostTransform;
 
-        public void Consume(IDeviceReport value)
+        public void Consume(IDeviceReport? value)
         {
+            if (value == null) return;
+
             if (value is ITabletReport report)
             {
                 if (PrecisionControlBinding.SetPosition)

@@ -32,12 +32,14 @@ namespace VoiDPlugins.OutputMode
             set => _virtualScreen = (IVirtualScreen)value.GetService(typeof(IVirtualScreen))!;
         }
 
-        public override TabletReference Tablet
+        public override TabletReference? Tablet
         {
             get => base.Tablet;
             set
             {
                 base.Tablet = value;
+                if (value == null) return; // null = no tablet
+
                 _pointer = new WinInkRelativePointer(value, _virtualScreen!)
                 {
                     Sync = Sync,
@@ -46,7 +48,7 @@ namespace VoiDPlugins.OutputMode
             }
         }
 
-        public override IRelativePointer Pointer
+        public override IRelativePointer? Pointer
         {
             get
             {

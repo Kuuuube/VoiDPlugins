@@ -29,8 +29,10 @@ namespace VoiDPlugins.Filter
 
         public PipelinePosition Position => PipelinePosition.PreTransform;
 
-        public void Consume(IDeviceReport value)
+        public void Consume(IDeviceReport? value)
         {
+            if (value == null) return;
+
             if (value is ITabletReport report)
             {
                 var truePoint = lastAvg.HasValue ? ReverseEMAFunc(report.Position, lastAvg.Value, (float)EMAWeight) : report.Position;
