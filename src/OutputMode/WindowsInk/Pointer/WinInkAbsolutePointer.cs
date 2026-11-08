@@ -16,9 +16,6 @@ namespace VoiDPlugins.OutputMode
 
         public void SetPosition(Vector2 pos)
         {
-            if (pos == _prev)
-                return;
-
             SetInternalPosition(pos);
             _prev = pos;
 
